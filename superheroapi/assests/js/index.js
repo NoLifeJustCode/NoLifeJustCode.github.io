@@ -220,13 +220,13 @@ function appendFavs(id){
  * retreive favourties list from storage or cookies
  */
 function initFavs(){
+    let temp="";
     if(localStorageAccess)
-        favourites=localStorage.favs;
-    else if(cookieAcess){
-        let temp=getCookie(favs);
-        if(temp!="")
-            favourites=temp.split(",")
-    }
+        temp=localStorage.favs;
+    else if(cookieAcess)
+        temp=getCookie("favs");
+    if(temp&&temp!="")
+        favourites=temp.split(",");
     favourites=favourites||[];
 }
 /**
