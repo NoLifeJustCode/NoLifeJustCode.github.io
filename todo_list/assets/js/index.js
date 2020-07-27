@@ -114,17 +114,19 @@ class TodoViewController extends TodoList{
      */
     handleDelete=(index,status)=>{
         console.log("deleting",index,status)
-        if(index<0||index>=this.Tasks.length)
-            return ;
-        if(status=="Completed")
+        if(index<0)
+            return;
+        console.log("in")
+        if(status=="Completed"&&index<this.completed.length)
             {
                 this.removeCompleted(index)
                 this.completed.splice(index,1)
                 this.updateIndex(this.completed)
                 if(this.selected!="Completed")
                     this.setTaskCount(this.Tasks.length+" task left")
+                console.log("completed",this.completed)
             }
-        else
+        else if(index<this.Tasks.length)
             {
                 this.removeTasks(index)
                 this.Tasks.splice(index,1);
@@ -185,7 +187,9 @@ class TodoViewController extends TodoList{
      */
     clearCompletedTasks=()=>{
         while(this.completed.length)
-            this.completed[0].handleDelete();
+            {   console.log(this.completed.length)
+                this.completed[0].handleDelete();
+            }
         this.completed=[]
         
     }
