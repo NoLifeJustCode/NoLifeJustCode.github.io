@@ -184,8 +184,8 @@ class TodoViewController extends TodoList{
      * delete all completed tasks
      */
     clearCompletedTasks=()=>{
-        for(let node of this.completed)
-            node.handleDelete()
+        while(this.completed.length)
+            this.completed[0].handleDelete();
         this.completed=[]
         
     }
